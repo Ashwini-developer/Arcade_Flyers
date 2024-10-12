@@ -56,12 +56,12 @@ Dynamic Batching: Processes multiple requests efficiently to optimize throughput
 Model Parallelism: Utilizes multiple GPUs for handling larger models and higher workloads.
 Real-Time Monitoring: Includes real-time monitoring tools that allow users to track inference demand and auto-scale services based on performance metrics.
 
-## Performance Metrics
+# Performance Metrics
 Inference Latency: Measures the time taken for the model to respond to requests.
 Throughput: Tracks the number of requests processed per second.
 Resource Utilization: Monitors CPU and GPU usage during inference.
 
-## Future Work
+# Future Work
 Enhance the system to process real-time sensor data for a more comprehensive predictive maintenance solution.
 Develop additional features for monitoring and analytics to improve user experience and system efficiency.
 Implement detailed logging and error handling to improve system reliability.
