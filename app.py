@@ -76,6 +76,19 @@ def detect_dents_and_cracks(image, model, labels):
     preds = model.run([model.get_outputs()[0].name], {model.get_inputs()[0].name: blob})[0]
     return postprocess_detections(preds, input_image.shape, labels)
 
+def suggest_repair_actions(damage_locations):
+    if not damage_locations:
+        st.write("No damages detected.")
+        return
+
+    for box, confidence, class_name in damage_locations:
+        if class_name == "dent":
+            st.write("Suggested Action: Inspect and repair the dent.")
+        elif class_name == "crack":
+            st.write("Suggested Action: Replace or reinforce the cracked section.")
+        # Add more cases based on your labels
+
+
 # Custom CSS
 def custom_css():
     st.markdown("""
@@ -136,22 +149,36 @@ def main():
         uploaded_file = st.file_uploader("", type=["jpg", "jpeg", "png"])
 
         if uploaded_file is not None:
-            try:
-                image = cv2.imdecode(np.frombuffer(uploaded_file.read(), np.uint8), 1)
+            if selected == "Damage Detection":
+                st.markdown('<p class="normal-font">Structural Integrity Assessment</p>', unsafe_allow_html=True)
+                st.info('Upload an image to check for any dents or cracks.', icon="ℹ️")
+                uploaded_file = st.file_uploader("", type=["jpg", "jpeg", "png"])
+
+    if uploaded_file is not None:
+        try:
+            col1,col2 =st.columns([1, 1])
+            image = cv2.imdecode(np.frombuffer(uploaded_file.read(), np.uint8), 1)
+            with col1:
                 st.image(image, caption="Original Image", use_column_width=True)
 
-                with st.spinner('Processing...'):
-                    damage_locations = detect_dents_and_cracks(image, yolo_model, labels)
+            with st.spinner('Processing...'):
+                damage_locations = detect_dents_and_cracks(image, yolo_model, labels)
 
+                # Draw rectangles on the image for detected damages
+                marked_image = image.copy()
                 for (box, confidence, class_name) in damage_locations:
                     left, top, width, height = box
+                    cv2.rectangle(marked_image, (left, top), (left + width, top + height), (0, 255, 0), 2)
                     st.write(f"{class_name} detected with {confidence:.2f}% confidence at ({left}, {top})")
-                    cv2.rectangle(image, (left, top), (left + width, top + height), (0, 255, 0), 2)
 
-                st.image(image, caption="Marked Image", use_column_width=True)
+                with col2:
+                    st.image(marked_image, caption="Image with Marked Faults", use_column_width=True)
 
-            except Exception as e:
-                st.error(f"Error processing image: {str(e)}")
+                suggest_repair_actions(damage_locations)  # Call the function to suggest repair actions
+
+        except Exception as e:
+            st.error(f"Error processing image: {str(e)}")
+
 
     if selected == "Faulty Wire Detection":
         st.markdown('<p class="normal-font">Electrical Fault Identification</p>', unsafe_allow_html=True)
