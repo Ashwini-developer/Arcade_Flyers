@@ -1,70 +1,61 @@
-# Arcade Flyers: AI-Driven Predictive Maintenance System
+# SkyPulse: Fly Safe, Land Secure..!!
 
-## Overview
-
-Arcade Flyers is a robust AI-driven predictive maintenance system designed for aerospace fleets. By leveraging NVIDIA Inference Microservices (NIM), this solution processes real-time sensor data from aircraft systems to optimize maintenance scheduling and improve overall aircraft availability.
-
-### Key Features
-
-- **Dynamic Batching and Model Parallelism**: Optimize inference for large-scale predictive models.
-- **Generative AI Insights**: Analyze historical and live data to generate actionable maintenance insights.
-- **User-Friendly Interface**: Simplifies deployment for engineers, facilitating easy interaction with the system.
-- **Real-Time Monitoring**: Ensures optimal performance and scalability of services.
+## AIRBUS AEROTHON 6.0
+### Team SkyPulse
 
 ## Table of Contents
+- [Problem Statement](#problem-statement)
+- [Hypothesis](#hypothesis)
+- [Dataset](#dataset)
+- [Tech Stack](#tech-stack)
+  - [Image Analysis and Damage Assessment](#image-analysis-and-damage-assessment)
+  - [Faulty Wire Identification](#faulty-wire-location-identification)
+  - [Repair Recommendations](#repair-recommendations)
+  - [Web Application (Full-Stack)](#web-application-full-stack)
+- [Contributors](#contributors)
 
-- [Installation](#installation)
-- [Usage](#usage)
-- [Model Integration](#model-integration)
-- [Features](#features)
-- [Real-Time Monitoring](#real-time-monitoring)
-- [Performance Metrics](#performance-metrics)
-- [Future Work](#future-work)
-- [License](#license)
+## Problem Statement
 
-## Installation
+Aircraft maintenance and repair are integral components of the aviation industry, serving as the backbone of safety, reliability, and operational continuity. The meticulous assessment and repair of dents, damage, detection of faulty wires, and wear on aircraft fuselage, wings, and other components are paramount to ensuring flight safety, regulatory compliance, and public confidence.
 
-To run this application, you need to install the required Python packages. Use the following command:
+First and foremost, the safety of passengers, crew, and cargo is the primary concern in aviation. Any compromise to the structural integrity of an aircraft, no matter how minor, poses a potential threat to safety. Damage, such as dents or structural deformities, can disrupt airflow, compromise aerodynamics, and weaken critical structural elements, increasing the risk of catastrophic failures during flight. Similarly, faulty wiring poses a significant safety risk, as it can lead to electrical malfunctions within critical aircraft systems. These malfunctions may result in system failures, in-flight emergencies, or even fires, jeopardizing the safety of passengers, crew, and the aircraft itself.
 
-```bash
-pip install -r requirements.txt
-```
+Thus, thorough assessments and repairs are essential to maintaining the airworthiness of aircraft and safeguarding against potential accidents.
 
-Make sure to set up your environment variables, especially NVIDIA_API_KEY.
+## Hypothesis
 
-## Usage
-Run the application using the following command:
+By implementing an automated system that utilizes image recognition, machine learning algorithms, and a database of known aircraft damage, we can accurately detect and classify cracks, dents, and faulty wiring on aircraft components. This system can then predict the most appropriate repair methods and materials needed to address the identified damage, leading to faster turnaround times, reduced maintenance costs, and improved aircraft safety.
 
-```bash
-streamlit run app.py
-```
+## Dataset
 
-## Application Structure
-Damage Detection: Upload an image to check for dents or cracks using a YOLO model.
-Faulty Wire Detection: Enter voltage, current, and resistance values to predict wire faults.
-Fault Bot: Interact with a generative AI model to ask questions related to airplane accidents and maintenance.
+**Roboflow Universe:**
+This dataset contains a collection of images of aircraft with labels for common damage types like cracks, dents, and faulty wiring. It's a good starting point for training a basic damage detection system but may require additional data for comprehensive performance.
 
-# Model Integration
-YOLO Model:
-The application utilizes the YOLO model for detecting damages in aircraft images.
-Preprocessing: Input images are resized and normalized for the model.
-Postprocessing: The model's predictions are processed to extract bounding boxes and confidence scores.
-Generative AI Model:
-Provides responses to user queries based on historical data and context.
-# Features
-Dynamic Batching: Processes multiple requests efficiently to optimize throughput.
-Model Parallelism: Utilizes multiple GPUs for handling larger models and higher workloads.
-Real-Time Monitoring: Includes real-time monitoring tools that allow users to track inference demand and auto-scale services based on performance metrics.
+## Tech Stack
 
-# Performance Metrics
-Inference Latency: Measures the time taken for the model to respond to requests.
-Throughput: Tracks the number of requests processed per second.
-Resource Utilization: Monitors CPU and GPU usage during inference.
+### Image Analysis and Damage Assessment
+- **OpenCV:** This open-source computer vision library provides foundational functionalities for image processing, manipulation, and feature extraction. It's used for tasks like image pre-processing, noise reduction, and basic image analysis.
+- **YOLOv5 (You Only Look Once v5):** This modern object detection algorithm is used for identifying and localizing damage (cracks, dents, etc.) and faulty wires within aircraft images. YOLOv5's pre-trained model is leveraged for damage detection and fine-tuned on our specific dataset.
 
-# Future Work
-Enhance the system to process real-time sensor data for a more comprehensive predictive maintenance solution.
-Develop additional features for monitoring and analytics to improve user experience and system efficiency.
-Implement detailed logging and error handling to improve system reliability.
+### Faulty Wire Identification
+- **Random Forest Classifier:** This machine learning algorithm is used to classify individual wires within aircraft harnesses as faulty or non-faulty based on extracted image features. Random Forest is a robust choice for classification tasks due to its interpretability and ability to handle imbalanced datasets.
 
-## License
-This project is licensed under the MIT License. See the LICENSE file for more details.
+### Repair Recommendations
+- **Machine Learning Algorithms:** The specific algorithms used here depend on the complexity of generating repair recommendations. It involves supervised learning techniques trained on historical data linking specific damage types and locations to recommended repair methods and materials.
+
+### Web Application (Full-Stack)
+- **Streamlit:** This Python library is the foundation of our web application backend. With Streamlit, we can define functions for:
+  - **Image Upload:** Components for users to upload images of aircraft components for analysis.
+  - **Machine Learning Model Integration:** Integration of our trained machine learning models (YOLOv5, Random Forest) to process the uploaded images and generate predictions.
+  - **Data Processing:** Manipulation and analysis of prediction results (damage type, location, severity) for repair recommendations.
+  - **User Interface Creation:** Various UI components like text boxes, buttons, and charts to create a user-friendly interface where users can interact with the system and see the results.
+
+## Contributors
+
+| SL.NO | NAME               | GITHUB PROFILE                               | LINKEDIN PROFILE                                      | EMAIL                          |
+|-------|--------------------|-----------------------------------------------|-------------------------------------------------------|--------------------------------|
+| 1.    | Soumik Saha        | [soumik-saha](https://github.com/soumik-saha) | [LinkedIn](https://www.linkedin.com/in/soumikisonline)    | sahasoumik1573@gmail.com             |
+| 2.    | Bhagyasri Uddandam | [BhagyasriUddandam](https://github.com/BhagyasriUddandam) | [LinkedIn](https://www.linkedin.com/in/bhagyasri-u) | bhagyasrirama@gmail.com |
+| 3.    | Ayushi Gupta       | [1001ayushi](https://github.com/1001ayushi)     | [LinkedIn](https://www.linkedin.com/in/ayushi-gupta-72a38121b/) | ayushigupta.9901@gmail.com             |
+| 4.    | Pankaj Goel        | [whitewolf-debugger](https://github.com/whitewolf-debugger) | [LinkedIn](https://www.linkedin.com/in/pankaj-goel-30195720a/) | goelpankaj875@gmail.com             |
+| 5.    | Souvik Dey         | [souvik987](https://github.com/souvik987) | [LinkedIn](https://www.linkedin.com/in/souvik-dey-80b033241/) | souvik001dey@gmail.com             |
