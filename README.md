@@ -40,29 +40,26 @@ streamlit run app.py
 ```
 
 ## Application Structure
-# Damage Detection: 
-Upload an image to check for dents or cracks using a YOLO model.
-# Faulty Wire Detection: 
-Enter voltage, current, and resistance values to predict wire faults.
-# Fault Bot: 
-Interact with a generative AI model to ask questions related to airplane accidents and maintenance.
-## Model Integration
-# YOLO Model
+Damage Detection: Upload an image to check for dents or cracks using a YOLO model.
+Faulty Wire Detection: Enter voltage, current, and resistance values to predict wire faults.
+Fault Bot: Interact with a generative AI model to ask questions related to airplane accidents and maintenance.
+
+# Model Integration
+YOLO Model:
 The application utilizes the YOLO model for detecting damages in aircraft images.
 Preprocessing: Input images are resized and normalized for the model.
 Postprocessing: The model's predictions are processed to extract bounding boxes and confidence scores.
-## Generative AI Model
+Generative AI Model:
 Provides responses to user queries based on historical data and context.
-## Features
-# Dynamic Batching: Processes multiple requests efficiently to optimize throughput.
-# Model Parallelism: Utilizes multiple GPUs for handling larger models and higher workloads.
-# Real-Time Monitoring
-Includes real-time monitoring tools that allow users to track inference demand and auto-scale services based on performance metrics.
+# Features
+Dynamic Batching: Processes multiple requests efficiently to optimize throughput.
+Model Parallelism: Utilizes multiple GPUs for handling larger models and higher workloads.
+Real-Time Monitoring: Includes real-time monitoring tools that allow users to track inference demand and auto-scale services based on performance metrics.
 
 ## Performance Metrics
-# Inference Latency: Measures the time taken for the model to respond to requests.
-# Throughput: Tracks the number of requests processed per second.
-# Resource Utilization: Monitors CPU and GPU usage during inference.
+Inference Latency: Measures the time taken for the model to respond to requests.
+Throughput: Tracks the number of requests processed per second.
+Resource Utilization: Monitors CPU and GPU usage during inference.
 
 ## Future Work
 Enhance the system to process real-time sensor data for a more comprehensive predictive maintenance solution.
