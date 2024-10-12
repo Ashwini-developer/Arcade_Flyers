@@ -119,6 +119,7 @@ def main():
     # Load labels and models
     labels = load_labels('data.yaml')
     yolo_model = load_model('Model/weights/best.onnx')
+    Fault = joblib.load('Model/Wire_Fault.joblib')
     
     custom_css()
     
