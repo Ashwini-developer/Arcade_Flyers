@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  skypulsemain:
+    image: skypulsemain
+    build:
+      context: .
+      dockerfile: ./Dockerfile
